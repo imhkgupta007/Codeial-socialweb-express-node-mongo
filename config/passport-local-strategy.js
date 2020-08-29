@@ -33,7 +33,7 @@ passport.serializeUser(function(user, done) {
 });
 
 // When next request came
-// deserializing the user from the key in the cookies to find and send the said user
+// deserializing the user from the key in the cookies to find the said user
 passport.deserializeUser(function(id, done) {
     User.findById(id, function(err, user) {
         if(err) {
@@ -43,7 +43,7 @@ passport.deserializeUser(function(id, done) {
     });
 });
 
-// Check if the user is authenticated we build a middleware function
+// Check if the user is authenticated(Guard) we build a middleware function 
 passport.checkAuthentication = function(req, res, next) {
     // If the user is signed in, pass over the request to next function(controller's action) defined in router file
     if (req.isAuthenticated()) {
