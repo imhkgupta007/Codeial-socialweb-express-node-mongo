@@ -7,7 +7,7 @@ module.exports.profile = function(req, res) {
     });
 }
 
-// Render the SIgn Up page
+// Render the Sign Up page
 module.exports.signUp = function(req, res) {
     if(req.isAuthenticated()) {
         return res.redirect('/users/profile');
