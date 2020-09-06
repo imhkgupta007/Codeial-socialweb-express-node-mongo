@@ -17,6 +17,12 @@
             <% for(let post of posts) { %>
                 <li>
                     <p>
+                        <!-- If we are logged in and loggedin user is same as signed in user -->
+                        <% if(locals.user && locals.user.id == post.user.id) { %>
+                        <small>
+                            <a href="/posts/destroy/<%= post.id %>">X</a>
+                        </small>
+                        <% } %>
                         <%= post.content %>
                         <br>
                         <small>
