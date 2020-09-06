@@ -9,7 +9,14 @@ const postSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }
+    },
+    // include the arrays of all ids of all comments in post schema itself
+    comments: [
+        {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment'
+        }
+    ]
 }, {
     // Add created at and updated at fields in robo3t(DB)
     timestamps: true

@@ -12,7 +12,15 @@ module.exports.home = function(req, res) {
     // });
 
     // Populate the user of each post in database
-    Post.find({}).populate('user').exec(function(err, posts) {
+    Post.find({})
+    .populate('user')
+    .populate({
+        path: 'comments',
+        populate: {
+            path: 'user'
+        }
+    })
+    .exec(function(err, posts) {
         return res.render('home', {
             title: "Codeial | Home",
             posts: posts
