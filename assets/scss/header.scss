@@ -1,0 +1,27 @@
+header {
+    height: 10% !important;
+    background-color: rgb(64, 178, 223);
+    // position: fixed;
+    margin: 0;
+    display: flex;
+    padding: 10px;
+
+    h1 {
+        width: 50%;
+    }
+
+    ul {
+        // width: 20%;
+        right: -35%;
+        position: relative;
+        // float: right;
+
+        a {
+            font-size: 20px;
+            text-transform: uppercase;
+            color: darkblue;
+            text-decoration: none;
+        }
+    }
+}
+

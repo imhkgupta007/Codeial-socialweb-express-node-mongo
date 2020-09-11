@@ -1,0 +1,11 @@
+footer {
+  height: 10% !important;
+  background-color: #40b2df;
+  margin: 0;
+  display: flex;
+  padding: 10px; }
+  footer a {
+    font-size: 20px;
+    text-transform: uppercase;
+    color: darkblue;
+    text-decoration: none; }
