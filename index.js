@@ -25,6 +25,11 @@ const MongoStore = require('connect-mongo')(session);
 const sassMiddleware = require('node-sass-middleware');
 // require Connect-Flash Middleware
 const flash = require('connect-flash');
+// require the custom made middleware for flash
+const customMware = require('./config/middleware');
+
+
+
 
 // Sass Middleware
 app.use(sassMiddleware({
@@ -52,6 +57,9 @@ app.set('view engine', 'ejs');
 // Set up view location
 app.set('views', './views');
 
+
+
+
 // MongoStore is used to store the session cookie in the database
 app.use(session({
     name: 'codeial',
@@ -77,7 +85,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAutheticatedUser);
+// Middleware for Flash
 app.use(flash());
+app.use(customMware.setFlash);
+
+
 
 // Use express router
 app.use('/', require('./routes'));
