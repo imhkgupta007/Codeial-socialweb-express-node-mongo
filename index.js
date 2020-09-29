@@ -45,6 +45,8 @@ app.use(express.urlencoded());
 app.use(cookieParser());
 // Add statics files
 app.use(express.static('./assets'));
+// Add static uploaded files or making uploads path available for the browser
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 // Use express Layouts
 app.use(expressLayouts);
