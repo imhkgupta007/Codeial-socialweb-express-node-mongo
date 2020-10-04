@@ -19,6 +19,8 @@ const session = require('express-session');
 const passport = require('passport');
 // require passport-local-strategy file
 const passportLocal = require('./config/passport-local-strategy');
+// require passport-jwt-strategy file
+const passportJWT = require('./config/passport-jwt-strategy');
 // MongoStore takes express session as its parameter
 const MongoStore = require('connect-mongo')(session);
 // require Sass Middleware
