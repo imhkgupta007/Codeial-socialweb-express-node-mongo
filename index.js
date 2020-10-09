@@ -21,6 +21,9 @@ const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 // require passport-jwt-strategy file
 const passportJWT = require('./config/passport-jwt-strategy');
+// require passport-google-oauth2-strategy file
+const passportGoogle = require('./config/passport-google-oauth2-strategy');
+
 // MongoStore takes express session as its parameter
 const MongoStore = require('connect-mongo')(session);
 // require Sass Middleware
