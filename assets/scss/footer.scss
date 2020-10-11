@@ -1,16 +1,18 @@
-footer {
+#layout-footer{
+    color: white;
+    a{
+        color: white;
+        text-decoration: none;
+    }
 
-    height: 10% !important;
-    background-color: rgb(64, 178, 223);
-    // position: relative;
-    margin: 0;
+    background: grey;
+    padding: 5px 10px;
     display: flex;
-    padding: 10px;
+    justify-content: flex-start;
 
-    a {
-            font-size: 20px;
-            text-transform: uppercase;
-            color: darkblue;
-            text-decoration: none;
+    .footer-nav{
+        ul{
+            list-style: none;
+        }
     }
 }

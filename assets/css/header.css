@@ -1,16 +1,23 @@
-header {
-  height: 10% !important;
-  background-color: #40b2df;
-  margin: 0;
+#layout-header nav {
   display: flex;
-  padding: 10px; }
-  header h1 {
-    width: 50%; }
-  header ul {
-    right: -35%;
-    position: relative; }
-    header ul a {
-      font-size: 20px;
-      text-transform: uppercase;
-      color: darkblue;
-      text-decoration: none; }
+  justify-content: space-between;
+  padding: 0 10px;
+  background: #2196f3;
+  color: white;
+  box-shadow: 1px 1px 1px 1px lightgrey;
+  height: 7.5%; }
+  #layout-header nav .mini-logo p {
+    margin: 10%;
+    font-size: 2rem;
+    font-weight: bold; }
+  #layout-header nav .auth-links ul {
+    margin: 5% 5px;
+    display: flex;
+    list-style: none; }
+    #layout-header nav .auth-links ul li {
+      margin-top: 5%;
+      margin-right: 10px;
+      font-size: 20px; }
+  #layout-header nav a {
+    color: white;
+    text-decoration: none; }

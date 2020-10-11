@@ -1,27 +1,38 @@
-header {
-    height: 10% !important;
-    background-color: rgb(64, 178, 223);
-    // position: fixed;
-    margin: 0;
-    display: flex;
-    padding: 10px;
+#layout-header{
+    nav{
+        display: flex;
+        justify-content: space-between;
+        padding: 0 10px;
+        background: #2196f3;
+        color: white;
+        box-shadow: 1px 1px 1px 1px lightgrey;
+        height: 7.5%;
+        
+        .mini-logo{
+            p{
+                margin: 10%;
+                font-size: 2rem;
+                font-weight: bold;
+            }
+        }
 
-    h1 {
-        width: 50%;
-    }
+        .auth-links{
+            ul{
+                margin: 5% 5px;
+                display: flex;
+                list-style: none;
+                li{
+                    margin-top: 5%;
+                    margin-right: 10px;
+                    font-size: 20px;
+                }
+            }
+        }
 
-    ul {
-        // width: 20%;
-        right: -35%;
-        position: relative;
-        // float: right;
-
-        a {
-            font-size: 20px;
-            text-transform: uppercase;
-            color: darkblue;
+        a{
+            color: white;
             text-decoration: none;
         }
+
     }
 }
-

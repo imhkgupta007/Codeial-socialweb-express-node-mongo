@@ -1,11 +1,11 @@
-footer {
-  height: 10% !important;
-  background-color: #40b2df;
-  margin: 0;
+#layout-footer {
+  color: white;
+  background: grey;
+  padding: 5px 10px;
   display: flex;
-  padding: 10px; }
-  footer a {
-    font-size: 20px;
-    text-transform: uppercase;
-    color: darkblue;
+  justify-content: flex-start; }
+  #layout-footer a {
+    color: white;
     text-decoration: none; }
+  #layout-footer .footer-nav ul {
+    list-style: none; }

@@ -13,7 +13,7 @@ module.exports.profile = function(req, res) {
 }
 
 // Render the update function
-module.exports.update = async function(req, res) {
+// module.exports.update = async function(req, res) {
     // if(req.user.id == req.params.id) {
     //     User.findByIdAndUpdate(req.params.id, req.body, function(err, user) {
     //         return res.redirect('back');
@@ -23,6 +23,7 @@ module.exports.update = async function(req, res) {
         // return res.status(401).send('Unauthorized');
     // }
 
+module.exports.update = async function(req, res) {
     if(req.user.id == req.params.id) {
         try {
             let user = await User.findById(req.params.id);
@@ -85,13 +86,14 @@ module.exports.signIn = function(req, res) {
 module.exports.create = function(req, res) {
     // Check whether password and confirm password are same
     if(req.body.password != req.body.confirm_password) {
-       return res.redirect('back');
+        req.flash('error', 'Passwords do not match');
+        return res.redirect('back');
     }
 
     // find by 'email' of req.body.email
     User.findOne({email: req.body.email}, function(err, user) {
         if(err) {
-            console.log('error in finding user in signing up');
+            req.flash('error', err);
             return;
         }
 
@@ -99,7 +101,7 @@ module.exports.create = function(req, res) {
         if(!user) {
             User.create(req.body, function(err, user) {
                 if(err) {
-                    console.log('error in creating while signing up');
+                    req.flash('error', err);
                     return;
                 }
 
