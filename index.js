@@ -1,34 +1,28 @@
-// Require the Express
 const express = require('express');
-// Create object for express
-const app = express();
-// Define the port
-const port = 8100;
+const env = require('./config/environment');
+const logger = require('morgan');
 
-// Require express-ejs-layouts
-const expressLayouts = require('express-ejs-layouts');
-// Require Cookie Parser
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
-// Require the MongoDB
+const app = express();
+require('./config/view-helpers')(app);
+
+const port = 8100;
+
+const expressLayouts = require('express-ejs-layouts');
+
 const db = require('./config/mongoose');
 
-// Used for session cookie
 const session = require('express-session');
-// require Passport for authentication
 const passport = require('passport');
-// require passport-local-strategy file
 const passportLocal = require('./config/passport-local-strategy');
-// require passport-jwt-strategy file
 const passportJWT = require('./config/passport-jwt-strategy');
-// require passport-google-oauth2-strategy file
 const passportGoogle = require('./config/passport-google-oauth2-strategy');
 
 // MongoStore takes express session as its parameter
 const MongoStore = require('connect-mongo')(session);
-// require Sass Middleware
 const sassMiddleware = require('node-sass-middleware');
-// require Connect-Flash Middleware
 const flash = require('connect-flash');
 // require the custom made middleware for flash
 const customMware = require('./config/middleware');
@@ -38,25 +32,38 @@ const chatServer = require('http').Server(app);
 const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
 chatServer.listen(5000);
 console.log('chat server is listening on port 5000');
+const path = require('path');
 
-
+app.use(cors());
 
 // Sass Middleware
-app.use(sassMiddleware({
-    src: './assets/scss',
-    dest: './assets/css',
-    debug: true,
-    outputStyle: 'extended',
-    prefix: '/css'
-}));
+// app.use(sassMiddleware({
+//     src: './assets/scss',
+//     dest: './assets/css',
+//     debug: true,
+//     outputStyle: 'extended',
+//     prefix: '/css'
+// }));
+if (env.name == 'development'){
+    app.use(sassMiddleware({
+        src: path.join(__dirname, env.asset_path, 'scss'),
+        dest: path.join(__dirname, env.asset_path, 'css'),
+        debug: true,
+        outputStyle: 'extended',
+        prefix: '/css'
+    }));
+}
+
 // Middleware encoder
 app.use(express.urlencoded());
 // Use Cookie Parser
 app.use(cookieParser());
 // Add statics files
-app.use(express.static('./assets'));
+app.use(express.static(env.asset_path));
 // Add static uploaded files or making uploads path available for the browser
 app.use('/uploads', express.static(__dirname + '/uploads'));
+
+app.use(logger(env.morgan.mode, env.morgan.options));
 
 // Use express Layouts
 app.use(expressLayouts);
@@ -76,7 +83,7 @@ app.set('views', './views');
 app.use(session({
     name: 'codeial',
     // TODO - change it before deployment in production mode
-    secret: 'something',
+    secret: env.session_cookie_key,
     saveUninitialized: false,   // when user has not logged in (or initialized) dont save additional data 
     resave: false,  // Do not save same data(rewrite) again and again
     cookie: {
@@ -97,7 +104,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAutheticatedUser);
-// Middleware for Flash
 app.use(flash());
 app.use(customMware.setFlash);
 

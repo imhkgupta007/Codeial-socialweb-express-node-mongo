@@ -1,6 +1,9 @@
 // Require the library
 const mongoose = require('mongoose');
 
+const env = require('./environment');
+mongoose.connect(`mongodb://localhost/${env.db}`);
+
 // Connect to the database
 mongoose.connect('mongodb://localhost/codeial_development');
 

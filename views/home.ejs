@@ -2,8 +2,11 @@
     <%= title %>
 </h1> -->
 
-<link rel="stylesheet" href="css/home.css">
-<link rel="stylesheet" href="css/chat_box.css">
+<!-- <link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/chat_box.css"> -->
+
+<link rel="stylesheet" href="<%= assetPath('css/home.css') %>">
+<link rel="stylesheet" href="<%= assetPath('css/chat_box.css') %>">
 
 <div id="home-container">
     <section id="feed-posts">
@@ -29,7 +32,7 @@
         <h4>Friends</h4>
         <% for(u of all_users) { %>
             <p>
-                <a href="users/profile/<%= u.id %>"><%= u.name %></a>
+                <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
             </p>
         <% } %>
     </section>
@@ -38,23 +41,20 @@
 </div>
 
 <!-- importing this script for creating the comments -->
-<script src="/js/home_post_comments.js" ></script>
-<script src="/js/home_posts.js"></script>
+<script src="<%= assetPath('js/home_post_comments.js') %>" ></script>
+<script src="<%= assetPath('js/home_posts.js') %>"></script>
 
-<!-- Import the script file for toggle likes, also run it over for the already present posts and comments on the page -->
-<script src="/js/toggle_likes.js"></script>
-
+<!-- CHANGE :: import the script file for toggle likes, also run it over for the already present posts and comments on the page -->
+<script src="<%= assetPath('js/toggle_likes.js') %>"></script>
 <script>
-    $('.toggle-like-button').each(function() {
+    $('.toggle-like-button').each(function(){
         let self = this;
         let toggleLike = new ToggleLike(self);
     });
 </script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.1/socket.io.js"></script>
-<script src="/js/chat_engine.js"></script>
-
-<% if(locals.user)  {%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+<script src="<%= assetPath('js/chat_engine.js') %>"></script>
+<% if (locals.user){ %>
 <script>
     new ChatEngine('user-chat-box', '<%= locals.user.email %>')
 </script>
